@@ -55,4 +55,5 @@ $\large\color{black}━━━━━━━━━━━━━━━━━━━━
 
 - DB 구조
 
+![image](https://github.com/charlievv92/portfolio/assets/86588564/f88a7617-1a4d-4551-a519-ee73daef874d)
 
