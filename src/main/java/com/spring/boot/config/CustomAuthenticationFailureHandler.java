@@ -17,7 +17,8 @@ public class CustomAuthenticationFailureHandler implements AuthenticationFailure
 	@Override
 	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
 			AuthenticationException exception) throws IOException, ServletException {
-		// TODO Auto-generated method stub
+		
+		//계정을 논리적으로 삭제하여 로그인에 실패했을 때 url
 		if (exception instanceof DisabledException) {
 		    response.sendRedirect("/auth/login?error=disabled");
 		} else {

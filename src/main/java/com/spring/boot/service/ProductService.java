@@ -265,6 +265,7 @@ public class ProductService {
 			pageable = requestDTO.getPageable(Sort.by("date").descending());
 		}
 	    
+		//Specification을 활용한 검색
 	    Specification<Product> spec = ProductSpecification.isGreaterThanZero();
 	    	  
 	    spec = spec.and(ProductSpecification.hasKeyword(requestDTO.getKeyword()));
@@ -292,6 +293,7 @@ public class ProductService {
 			pageable = requestDTO.getPageable(Sort.by("date").descending());
 		}
 	    
+		//productIdList에 있는 Id값과 일치하는 데이터 찾기
 	    Page<Product> result = productRepository.findByIdIn(productIdList, pageable);
 	    
 	    Function<Product, ProductDTO> fn = (entity -> entityToDto(entity));
