@@ -146,6 +146,6 @@ gradle-app.setting
 # Java heap dump
 *.hprof
 
-application-oauth.properties
+src/main/resources/application-oauth.properties
 
 # End of https://www.toptal.com/developers/gitignore/api/java,eclipse,windows,gradle
