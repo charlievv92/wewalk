@@ -12,6 +12,7 @@ import com.spring.boot.service.UserService;
 
 import lombok.RequiredArgsConstructor;
 
+//테스트용 메인 페이지
 @RequiredArgsConstructor
 @Controller
 public class HomeController {

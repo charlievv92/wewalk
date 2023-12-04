@@ -6,7 +6,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-//세션으로 활용하려고 했으나 세션이 없다고 뜸
 @Data
 @NoArgsConstructor
 public class SiteUserDTO{

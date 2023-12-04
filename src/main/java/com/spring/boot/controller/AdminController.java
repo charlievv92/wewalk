@@ -1,12 +1,8 @@
 package com.spring.boot.controller;
 
-import java.security.Principal;
 import java.time.DateTimeException;
 import java.time.LocalDate;
-import java.util.HashMap;
-import java.util.Map;
 
-import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import org.springframework.core.io.ClassPathResource;
@@ -15,12 +11,8 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.http.HttpStatus;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -28,18 +20,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.server.ResponseStatusException;
 
 import com.spring.boot.dto.AdminCreateForm;
 import com.spring.boot.dto.PageRequestDTO;
-import com.spring.boot.dto.PageResultDTO;
 import com.spring.boot.dto.PrincipalDetails;
-import com.spring.boot.dto.SiteUserDTO;
-import com.spring.boot.dto.UserCreateForm;
 import com.spring.boot.model.SellerRequest;
 import com.spring.boot.model.SiteUser;
 import com.spring.boot.model.UserRole;
@@ -58,25 +43,6 @@ public class AdminController {
 	//오버로딩된 생성자로 의존성 주입(DI)
 	private final AdminService adminService;
 	private final UserService userService;
-
-	
-	//기존에 검색 기능이 없는 리스트
-//	@RequestMapping("/userList")
-//	public String list(Model model, @PageableDefault Pageable pageable, 
-//			@AuthenticationPrincipal PrincipalDetails principalDetails) {
-//		
-//		Page<SiteUser> paging = adminService.getLists(pageable);
-//		
-//	    String userName = principalDetails.getUsername();
-//		
-//		//모든 데이터가 담긴 lists를 user_list에 넘겨줌
-//		model.addAttribute("paging", paging);
-//		model.addAttribute("userName", userName);
-//		
-//		return "user_list";
-//		
-//	}
-	
 	
 	//검색 기능이 포함된 리스트
 	@RequestMapping("/userList")
@@ -86,7 +52,7 @@ public class AdminController {
 		
 		String userName = principalDetails.getUsername();
 		
-	    model.addAttribute("paging", adminService.getList(pageRequestDTO)); // 또는 적절한 필드와 데이터 매핑
+	    model.addAttribute("paging", adminService.getList(pageRequestDTO));
 	    model.addAttribute("userName", userName);
 	    
 	    return "user_list2";
@@ -99,8 +65,7 @@ public class AdminController {
 		Page<SellerRequest> paging = adminService.getSellerRequestLists(pageable);
 		
 	    String userName = principalDetails.getUsername();
-		
-		//모든 데이터가 담긴 lists를 user_list에 넘겨줌
+
 		model.addAttribute("paging", paging);
 		model.addAttribute("userName", userName);
 		
@@ -116,8 +81,7 @@ public class AdminController {
 		SellerRequest request = userService.getSellerRequest(id);
 		
 		//받아온 판매자 요청으로 요청자 받기
-		SiteUser requestUser =userService
-				.getUser(request.getRequestUser().getId());
+		SiteUser requestUser =userService.getUser(request.getRequestUser().getId());
 		
 		//요청 승인 처리하고 db에 저장
 		adminService.approveRequest(requestUser, request);
@@ -225,9 +189,6 @@ public class AdminController {
 			@PathVariable("id") Long id, Model model) {
 		
 		SiteUser siteUser = userService.getUser(id);
-		
-		//패스워드는 서버단에서 확인 가능하지만 클라이언트단에서는 확인 불가
-		
 		String year = Integer.toString(siteUser.getBirthDate().getYear());
 		String month = Integer.toString(siteUser.getBirthDate().getMonth().getValue());
 		String day = Integer.toString(siteUser.getBirthDate().getDayOfMonth());
@@ -246,7 +207,7 @@ public class AdminController {
 	    
 	    //url에 따라 양식 변경하려면 add해주면 됨
 	    model.addAttribute("currentUrl", "/modifyUser");
-		
+
 		return "createUser_form";
 		
 	}

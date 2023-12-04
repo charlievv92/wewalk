@@ -51,7 +51,7 @@ public class SecurityConfig {
         http
 	        .authorizeRequests()
 	        	//.requestMatchers(CorsUtils::isPreFlightRequest).permitAll() 배포시 테스트 필요
-	            //.antMatchers("/user/mypage/myshop/**").hasAnyRole(UserRole.SELLER.name(), UserRole.ADMIN.name()) // SELLER만 myshop에 접근 가능
+	            .antMatchers("/user/mypage/myshop/**").hasAnyRole(UserRole.SELLER.name(), UserRole.ADMIN.name()) // SELLER만 myshop에 접근 가능
 	            .antMatchers("/user/**").hasAnyRole(UserRole.USER.name(), UserRole.SELLER.name(), UserRole.ADMIN.name()) // USER와 SELLER는 나머지 /user/**에 접근 가능
 	            .antMatchers("/admin/**").hasRole(UserRole.ADMIN.name())
 	            .anyRequest().permitAll()

@@ -57,11 +57,13 @@ public class MainController {
 			
 			//interest가 일치하는 상품 중 판매량이 높은 순으로 3개 가져오기			
 			List<Product> productsFoundByInterest = productService.getProductsByCategory(userInterest);
-			List<Long> top8SellingProductnosFoundByInterest = orderListService
+			
+			//거래내역에서 
+			List<Long> top3SellingProductnosFoundByInterest = orderListService
 																.getTopNSellingProductnosFoundByCategory(productsFoundByInterest, topN);
 	        
 			List<Product> top3SellingProductsFoundByInterest = productService
-																.getTopNSellingProducts(top8SellingProductnosFoundByInterest);
+																.getTopNSellingProducts(top3SellingProductnosFoundByInterest);
 			
 	        model.addAttribute("top3products", top3SellingProductsFoundByInterest);
 			model.addAttribute("user",user);
@@ -75,9 +77,10 @@ public class MainController {
 		//판매량 상위 8개
 		topN = PageRequest.of(0, 8);
 		
+		//주문내역에서 groupby를 통해 가장 많이 판매된 상품의 productno를 8개 가져옴
     	List<Long> top8SellingProductnos = orderListService.getTopNSellingProductnos(topN);
 		
-		//프로덕트에서 검색해서 가장많이팔린거 8개 리스트 들고감
+		//프로덕트에서 검색해서 가장 많이 팔린 상품 8개 리스트 들고감
 		List<Product> productListTop8 = productService.getTopNSellingProducts(top8SellingProductnos);
 		model.addAttribute("productListTop8", productListTop8);
 		
@@ -145,6 +148,8 @@ public class MainController {
     	Pageable top20 = PageRequest.of(0, 20);
     	
     	List<Long> top20SellingProductnos = orderListService.getTopNSellingProductnos(top20);
+    	
+    	//판매량 상위 20개 상품 중 2회 이상 재구매한 유저가 있는 상품(2회 이상 재구매한 유저가 많은 상품 -> 3명 이상)
     	List<Long> productnosTop20SellingNBoughtMoreThan3TimesBySameUser = orderListService
     					.getProductnosBoughtMoreThan3TimesBySameUser(top20SellingProductnos);
     	

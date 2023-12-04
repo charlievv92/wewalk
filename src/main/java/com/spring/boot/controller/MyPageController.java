@@ -454,8 +454,7 @@ public class MyPageController {
                     
 
     }     
-
-    
+   
     private String saveImage(MultipartFile image) {
         // 이미지를 저장할 디렉토리 경로 설정 (application.properties에 설정한 경로 사용)
     	

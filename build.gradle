@@ -26,52 +26,6 @@ repositories {
 	maven { url 'https://jitpack.io' }
 }
 
-/*dependencies {
-
-	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.3.1'
-
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
-	implementation 'org.springframework.boot:spring-boot-starter-security'
-	testImplementation 'org.springframework.security:spring-security-test'
-	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
-	implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'
-	compileOnly 'org.projectlombok:lombok'
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	runtimeOnly 'com.mysql:mysql-connector-java'
-	annotationProcessor 'mysql:mysql-connector-java'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'org.springframework.security:spring-security-test'
-
-	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
-
-	implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'
-	compileOnly 'org.projectlombok:lombok'
-	annotationProcessor 'org.projectlombok:lombok'
-
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:2.3.1'
-
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-validation'
-	implementation 'org.springframework.session:spring-session-jdbc'
-	implementation 'com.mysql:mysql-connector-j'
-
-	implementation 'com.github.iamport:iamport-rest-client-java:0.2.21'
-	
-	implementation 'commons-io:commons-io:2.6'
-	
-
-}*/
-
 /*
 	spring-boot : 2.7.15v
 	jpa
