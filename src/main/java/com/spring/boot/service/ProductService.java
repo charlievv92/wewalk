@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.function.Function;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -43,7 +42,7 @@ import lombok.RequiredArgsConstructor;
 public class ProductService {
 	
 	@Autowired
-	private final ProductRepository productRepository;//서비스와 레포 연결
+	private final ProductRepository productRepository; //서비스와 레포 연결
 	private final UserRepository userRepository;
 	
 	//최신글부터 전체셀렉
@@ -83,10 +82,6 @@ public class ProductService {
 		}
 		
 	}
-	
-	//현재조회한 상품을  팔고있는 판매자를 찾기 
-	//public SiteUser getSeller()
-	
 	
 	//소연언니
 	@Transactional

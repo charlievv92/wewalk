@@ -7,12 +7,10 @@ import java.util.Optional;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.spring.boot.config.DataNotFoundException;
 import com.spring.boot.dao.OrderListRepository;
 import com.spring.boot.dao.SellerRequestRepository;
-
 import com.spring.boot.dao.UserRepository;
 import com.spring.boot.model.OrderList;
 import com.spring.boot.model.SellerRequest;

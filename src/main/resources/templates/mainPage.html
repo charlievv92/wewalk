@@ -1,323 +1,306 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WeWalkShop</title>
-	<link rel="stylesheet" href="/main/bootstrap.min.css">
-    <link rel="stylesheet" href="/main/reset.css">
-    <link rel="stylesheet" href="/main/maincss01.css">
-    <link rel="stylesheet" href="/main/maincss02.css">
-    <link rel="stylesheet" href="/main/maincss03.css">
-    <link rel="stylesheet" href="/main/maincss03.css">
-    <link rel="stylesheet" href="/header/header.css">
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script src="/main/common.js"></script>
-    <script src="/main/visual.js"></script>
-	<script src="/header/header.js"></script>
-	
-    <script src="/main/bootstrap.min.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WeWalkShop</title>
+<link rel="stylesheet" href="/main/bootstrap.min.css">
+<link rel="stylesheet" href="/main/reset.css">
+<link rel="stylesheet" href="/main/maincss01.css">
+<link rel="stylesheet" href="/main/maincss02.css">
+<link rel="stylesheet" href="/main/maincss03.css">
+<link rel="stylesheet" href="/main/maincss03.css">
+<link rel="stylesheet" href="/header/header.css">
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="/main/common.js"></script>
+<script src="/main/visual.js"></script>
+<script src="/header/header.js"></script>
 
-    
+<script src="/main/bootstrap.min.js"></script>
+
+
 </head>
 <body>
 
-    <div id="wrap" style="background-color: #FDFDFD">
-        
-
-        <div th:replace="header :: headerFragment"></div>
-		
-		
-		<div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel" style="background-color: #EAEAEA;">
-            <div class="carousel-inner">
-                <div class="carousel-item active" data-bs-interval="2000">
-                	<a href="/user/mypage/grade">
-                    <img src="/img/grade.jpg" class="d-block w-100" alt="..." >
-                    </a>
-                </div>
-                <div class="carousel-item" data-bs-interval="2000">
-                	<a href="/user/mypage/membership">
-                    <img src="/img/membership.jpg" class="d-block w-100" alt="..." >
-                    </a>
-                </div>
-                <div class="carousel-item" data-bs-interval="2000">
-                	<a href="/user/mypage/seller">
-                    <img src="/img/seller.png" class="d-block w-100" alt="...">
-                    </a>
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"
-                style="background-image: url('/img/beforebutton.svg');"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
-                <span class="carousel-control-next-icon" ariahidden="true"
-                style="background-image: url('/img/nextbutton.svg');"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
-		
-        <div id="main">
-            
-            <div id="contents" class="page_aticle">
-               
-    
-                <div class="top_btn">
-                    <button id="go-top" alt="맨 위로가기"></button>
-                </div>
-    
-                <!-- 우선은 bg color 있는 것과 없는 2가지 types만 추가  -->
-                <!-- class = "main_type1은 bg 없음" -->
-                	<div class="rollmenu1">
-		                <div class="main_type1">
-		                <!-- type1:  -->
-		                    <div class="product_list">
-		                    <!-- 상품 추천 -->
-		                        <div class="tit_goods">
-		                            <h3 class="tit">
-		                                <span class="name">
-		                                최근등록된 상품
-		                                </span>
-		                                
-		                            </h3>
-		                        </div>
-		                        
-		                        <div class="list_goods">
-		                            <div class="bx_wrapper" style="max-width: 1054px; margin: 0 auto;">
-		                                <div class="vx-viewport" style="width: 100%; height: 506px; position: relative; overflow: hidden;">
-		                                    
-		                                    <ul data-title="이 상품 어때요?" data-section="today_recommendation" class="list_goods_ul" 
-		                                    style="width: 2215%; position: relative; transition-duration: 0.5s; transform: translate3d(0, 0, 0);"> 
-		                                    
-		    
-		                                    <!-- list data  -->
-		                                    
-		                                        <li data-index="1" data-name="today_recommendation" class="list_item"
-		                                        style="float: left; position: relative; width: 249px; margin-right: 18px;"
-		                                        th:each="recently : ${recentlyProducts}">
-		                                        <a class="thumb_goods" th:href="@{/product/detail/{id}(id=${recently.id})}">
-		                                            
-		                                        <img th:src="@{'/product/images/' + ${recently.image}}" alt="상품이미지" class="thumb">
-		                                            
-		                                        </a>
-		                                        <div class="info_goods">
-		                                            <span class="name">
-		                                                <a class="txt" th:text="${recently.pname}">
-		                                                    
-		                                                </a>
-		                                            </span>
-		                                            <span class="price" th:text="${#numbers.formatInteger(recently.price, 1, 'COMMA') + ' 원'}"></span>
-		                                        </div>
-		                                        </li>
-		                                        
-		                                        
-		                                    </ul>
-		    
-		                                </div>
-		                                <!-- bx-viewport 끝 -->
-		                                <div class="bx_controls_direction">
-		                                <!-- 버튼을 누르면 오른쪽으로 1068px 만큼 이동, 끝에 닿으면 버튼 사라짐 -->
-		                                    <a class="bx-prev"><span class="blind">이전으로</span></a>
-		                                    <a class="bx-next"><span class="blind">이후로</span></a>
-		                                </div>
-		                            </div>
-		                        </div>
-		                            
-		                    </div>
-		                </div>
-	                </div>
-	                <!-- class="main_type1" 끝 -->
-	            
-	               
-	                <!-- .main_type1 반복 -->
-	                <div class="rollmenu2">
-		                <div class="main_type1">
-		                    <!-- type1:  -->
-		                        <div class="product_list">
-		                        <!-- 상품 추천 -->
-		                            <div class="tit_goods">
-		                                <h3 class="tit">
-		                                    <span class="name">
-		                                    가장 많이 팔렸어요
-		                                    </span>
-		                                    <!-- 아이콘 없는 버전, h3에 링크 없음 -->
-		                                </h3>
-		                            </div>
-		                            <!-- list_goods는 마켓컬리와 똑같이 html 파일에서 스타일함 -->
-		                            <div class="list_goods">
-		                                <div class="bx_wrapper" style="max-width: 1054px; margin: 0 auto;">
-		                                    <div class="vx-viewport" style="width: 100%; height: 506px; position: relative; overflow: hidden;">
-		                                        <!-- overflow: hidden 임시로 삭제 -->
-		                                        <ul data-title="이 상품 어때요?" data-section="today_recommendation" class="list_goods_ul" 
-		                                        style="width: 2215%; position: relative; transition-duration: 0.5s; transform: translate3d(0, 0, 0);"> 
-		                                        <!--width: 2215%는 아직 뭔지 모르겠음  -->
-		                                        <!-- data-section과 data-name은 임시값 -->
-		        
-		                                        <!-- list data  -->
-		                                            <li data-index="1" data-name="today_recommendation" class="list_item"
-		                                            style="float: left; position: relative; width: 249px; margin-right: 18px;"
-		                                            th:each="toplist : ${productListTop8}">
-														<a class="thumb_goods" th:href="@{/product/detail/{id}(id=${toplist.id})}">
-
-		                                                <img th:src="@{'/product/images/' + ${toplist.image}}" alt="상품이미지" class="thumb">
-
-		                                                
+	<div id="wrap" style="background-color: #FDFDFD">
 
 
-		                                               
-		                                                <!-- 상품 이미지 임시값임. src는 데이터로 받아오기 -->
-		                                            </a>
-		                                            <div class="info_goods">
-		                                                <span class="name">
-		                                                    <a class="txt" th:text="${toplist.pname}">
-		                                                        
-		                                                    </a>
-		                                                </span>
-		                                                <span class="price"  th:text="${#numbers.formatInteger(toplist.price, 1, 'COMMA') + ' 원'}"></span>
-		
-		                                            </div>
-		                                            </li>
-		                                            
-		                                        </ul>
-		        
-		                                    </div>
-		                                    <!-- bx-viewport 끝 -->
-		                                    <div class="bx_controls_direction">
-		                                    <!-- 버튼을 누르면 오른쪽으로 1068px 만큼 이동, 끝에 닿으면 버튼 사라짐 -->
-		                                        <a class="bx-prev"><span class="blind">이전으로</span></a>
-		                                        <a class="bx-next"><span class="blind">이후로</span></a>
-		                                    </div>
-		                                </div>
-		                            </div>
-		                                
-		                        </div>
-		                </div>
-	                </div>
-	           
-                <!-- .main_type1 반복 끝-->
-    
-                <!-- .main_type2 반복-->
-	                <div class="main_type2 bg">
-	                    <div class="main_event">
-	                        <div class="tit_goods">
-	                            <h3 class="tit">
-	                            <!-- 아이콘 있는 버전, h3에 링크 있음 -->
-	                            
-	                                <a th:href="@{/user/mypage/myInterest}" class="name" >
-	                                    <span class="ico" th:if="${user!=null && user.interest1!=null}">관심있을만한 상품</span>
-	                                    <span class="ico" th:if="${user == null}">관심상품 등록하기</span>
-	                                    <span class="ico" th:if="${user != null && user.interest1 == null}">관심상품 등록하기</span>
-	                                </a>
-	                            </h3>
-	                        </div>
-	                        
-	                        <div class="list_goods" th:if="${user!=null && user.interest1!=null}">
-	                            <ul data-title="이벤트 소식" data-section="event" class="list_goods_ul">
-	                                <li>
-	                                
-	                                    <li data-index="1" th:each="topproduct : ${top3products}"style="text-align: center;">
-	                                        <a class="thumb_goods" th:href="@{/product/detail/{id}(id=${topproduct.id})}">
-	                                            <img th:src="@{'/product/images/' + ${topproduct.image}}" alt="상품이미지" class="thumb">
-	                                            </a>
-	                                        <div class="info_goods">
-	                                            <div class="inner_info">
-	                                                <span class="name" th:text="${topproduct.pname}" style="font-size: 16px; margin-bottom: 20px;">
-	                                                    
-	                                                </span>
-	                                                <span class="desc" th:text="${topproduct.content}"> 
-	                                                    
-	                                                </span>
-	                                            </div>
-	                                        </div>
-	                                    </li>
-	                                </li>
-	                                 
-	                                
-	                            </ul>
-	                        </div>
-	                       
-	                        <div class="list_goods" th:if="${user==null}">
-	                            <ul data-title="이벤트 소식" data-section="event" class="list_goods_ul">
-	                                <li>
-	                                	<li style="text-align: center;">
-	                                		<div class="inner_info">
-	                                               　
-	                                                
-	                                        </div>
-	                                	</li>
-	                                    <li data-index="1" style="text-align: center;">
-	                                        
-	                                        <div class="info_goods">
-	                                            <div class="inner_info">
-	                                                <span class="name" style="font-size: 30px; margin-bottom: 20px; text-align: center; margin-top: 50px;
-	                                                overflow: inherit; position: static;letter-spacing: 5px; ">
-	                                                    
-	                                                    
-	                                                    ⬆️<br/>
-	                                                    관심분야 설정하시면<br/>
+		<div th:replace="header :: headerFragment"></div>
 
-	                                                    좋아하실만한 상품을
-	                                                    <br/>
-	                                                     
-	                                                    알려드릴게요
-	                                                </span>
-	                                                
-	                                            </div>
-	                                        </div>
-	                                    </li>
-	                                </li>
-	                                 
-	                                
-	                            </ul>
-	                        </div>
-	                        
-	                        <div class="list_goods" th:if="${user != null and user.interest1 == null}">
-	                            <ul data-title="이벤트 소식" data-section="event" class="list_goods_ul">
-	                                <li>
-	                                	<li style="text-align: center;">
-	                                		<div class="inner_info">
-	                                               　
-	                                                
-	                                        </div>
-	                                	</li>
-	                                    <li data-index="1" style="text-align: center;">
-	                                        
-	                                        <div class="info_goods">
-	                                            <div class="inner_info">
-	                                                <span class="name" style="font-size: 30px; margin-bottom: 20px; text-align: center; margin-top: 50px;
-	                                                overflow: inherit; position: static;letter-spacing: 5px; ">
-	                                                    
-	                                                    
-	                                                    ⬆️<br/>
-	                                                    관심분야 설정하시면<br/>
 
-	                                                    좋아하실만한 상품을
-	                                                    <br/>
-	                                                     
-	                                                    알려드릴게요
-	                                                </span>
-	                                                
-	                                            </div>
-	                                        </div>
-	                                    </li>
-	                                </li>
-	                                 
-	                                
-	                            </ul>
-	                        </div>
-	                    </div>
-	                </div>
-                <!-- .main_type2 반복 끝-->
-             </div>
-          </div>
+		<div id="carouselExampleInterval" class="carousel slide"
+			data-bs-ride="carousel" style="background-color: #EAEAEA;">
+			<div class="carousel-inner">
+				<div class="carousel-item active" data-bs-interval="2000">
+					<a href="/user/mypage/grade"> <img src="/img/grade.jpg"
+						class="d-block w-100" alt="...">
+					</a>
+				</div>
+				<div class="carousel-item" data-bs-interval="2000">
+					<a href="/user/mypage/membership"> <img
+						src="/img/membership.jpg" class="d-block w-100" alt="...">
+					</a>
+				</div>
+				<div class="carousel-item" data-bs-interval="2000">
+					<a href="/user/mypage/seller"> <img src="/img/seller.png"
+						class="d-block w-100" alt="...">
+					</a>
+				</div>
+			</div>
+			<button class="carousel-control-prev" type="button"
+				data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+				<span class="carousel-control-prev-icon" aria-hidden="true"
+					style="background-image: url('/img/beforebutton.svg');"></span> <span
+					class="visually-hidden">Previous</span>
+			</button>
 
-        
-        <div th:replace="footer :: footerFragment"></div>
-        <!-- id="footer" -->
-		
-    </div>
-    
+			<button class="carousel-control-next" type="button"
+				data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+				<span class="carousel-control-next-icon" ariahidden="true"
+					style="background-image: url('/img/nextbutton.svg');"></span> <span
+					class="visually-hidden">Next</span>
+			</button>
+		</div>
+
+		<div id="main">
+
+			<div id="contents" class="page_aticle">
+
+
+				<div class="top_btn">
+					<button id="go-top" alt="맨 위로가기"></button>
+				</div>
+
+				<!-- 우선은 bg color 있는 것과 없는 2가지 types만 추가  -->
+				<!-- class = "main_type1은 bg 없음" -->
+				<div class="rollmenu1">
+					<div class="main_type1">
+						<!-- type1:  -->
+						<div class="product_list">
+							<!-- 상품 추천 -->
+							<div class="tit_goods">
+								<h3 class="tit">
+									<span class="name"> 최근등록된 상품 </span>
+
+								</h3>
+							</div>
+
+							<div class="list_goods">
+								<div class="bx_wrapper"
+									style="max-width: 1054px; margin: 0 auto;">
+									<div class="vx-viewport"
+										style="width: 100%; height: 506px; position: relative; overflow: hidden;">
+
+										<ul data-title="이 상품 어때요?" data-section="today_recommendation"
+											class="list_goods_ul"
+											style="width: 2215%; position: relative; transition-duration: 0.5s; transform: translate3d(0, 0, 0);">
+
+
+											<!-- list data  -->
+
+											<li data-index="1" data-name="today_recommendation"
+												class="list_item"
+												style="float: left; position: relative; width: 249px; margin-right: 18px;"
+												th:each="recently : ${recentlyProducts}"><a
+												class="thumb_goods"
+												th:href="@{/product/detail/{id}(id=${recently.id})}"> <img
+													th:src="@{'/product/images/' + ${recently.image}}"
+													alt="상품이미지" class="thumb">
+
+											</a>
+												<div class="info_goods">
+													<span class="name"> <a class="txt"
+														th:text="${recently.pname}"> </a>
+													</span> <span class="price"
+														th:text="${#numbers.formatInteger(recently.price, 1, 'COMMA') + ' 원'}"></span>
+												</div></li>
+
+
+										</ul>
+
+									</div>
+									<!-- bx-viewport 끝 -->
+									<div class="bx_controls_direction">
+										<!-- 버튼을 누르면 오른쪽으로 1068px 만큼 이동, 끝에 닿으면 버튼 사라짐 -->
+										<a class="bx-prev"><span class="blind">이전으로</span></a> <a
+											class="bx-next"><span class="blind">이후로</span></a>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+				<!-- class="main_type1" 끝 -->
+
+
+				<!-- .main_type1 반복 -->
+				<div class="rollmenu2">
+					<div class="main_type1">
+						<!-- type1:  -->
+						<div class="product_list">
+							<!-- 상품 추천 -->
+							<div class="tit_goods">
+								<h3 class="tit">
+									<span class="name"> 가장 많이 팔렸어요 </span>
+									<!-- 아이콘 없는 버전, h3에 링크 없음 -->
+								</h3>
+							</div>
+							<!-- list_goods는 마켓컬리와 똑같이 html 파일에서 스타일함 -->
+							<div class="list_goods">
+								<div class="bx_wrapper"
+									style="max-width: 1054px; margin: 0 auto;">
+									<div class="vx-viewport"
+										style="width: 100%; height: 506px; position: relative; overflow: hidden;">
+										<!-- overflow: hidden 임시로 삭제 -->
+										<ul data-title="이 상품 어때요?" data-section="today_recommendation"
+											class="list_goods_ul"
+											style="width: 2215%; position: relative; transition-duration: 0.5s; transform: translate3d(0, 0, 0);">
+											<!--width: 2215%는 아직 뭔지 모르겠음  -->
+											<!-- data-section과 data-name은 임시값 -->
+
+											<!-- list data  -->
+											<li data-index="1" data-name="today_recommendation"
+												class="list_item"
+												style="float: left; position: relative; width: 249px; margin-right: 18px;"
+												th:each="toplist : ${productListTop8}"><a
+												class="thumb_goods"
+												th:href="@{/product/detail/{id}(id=${toplist.id})}"> <img
+													th:src="@{'/product/images/' + ${toplist.image}}"
+													alt="상품이미지" class="thumb"> <!-- 상품 이미지 임시값임. src는 데이터로 받아오기 -->
+											</a>
+												<div class="info_goods">
+													<span class="name"> <a class="txt"
+														th:text="${toplist.pname}"> </a>
+													</span> <span class="price"
+														th:text="${#numbers.formatInteger(toplist.price, 1, 'COMMA') + ' 원'}"></span>
+
+												</div></li>
+
+										</ul>
+
+									</div>
+									<!-- bx-viewport 끝 -->
+									<div class="bx_controls_direction">
+										<!-- 버튼을 누르면 오른쪽으로 1068px 만큼 이동, 끝에 닿으면 버튼 사라짐 -->
+										<a class="bx-prev"><span class="blind">이전으로</span></a> <a
+											class="bx-next"><span class="blind">이후로</span></a>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+				<!-- .main_type1 반복 끝-->
+
+				<!-- .main_type2 반복-->
+				<div class="main_type2 bg">
+					<div class="main_event">
+						<div class="tit_goods">
+							<h3 class="tit">
+								<!-- 아이콘 있는 버전, h3에 링크 있음 -->
+
+								<a th:href="@{/user/mypage/myInterest}" class="name"> <span
+									class="ico" th:if="${user!=null && user.interest1!=null}">관심있을만한
+										상품</span> <span class="ico" th:if="${user == null}">관심상품 등록하기</span>
+									<span class="ico"
+									th:if="${user != null && user.interest1 == null}">관심상품
+										등록하기</span>
+								</a>
+							</h3>
+						</div>
+
+						<div class="list_goods"
+							th:if="${user!=null && user.interest1!=null}">
+							<ul data-title="이벤트 소식" data-section="event"
+								class="list_goods_ul">
+								<li>
+								<li data-index="1" th:each="topproduct : ${top3products}"
+									style="text-align: center;"><a class="thumb_goods"
+									th:href="@{/product/detail/{id}(id=${topproduct.id})}"> <img
+										th:src="@{'/product/images/' + ${topproduct.image}}"
+										alt="상품이미지" class="thumb">
+								</a>
+									<div class="info_goods">
+										<div class="inner_info">
+											<span class="name" th:text="${topproduct.pname}"
+												style="font-size: 16px; margin-bottom: 20px;"> </span> <span
+												class="desc" th:text="${topproduct.content}"> </span>
+										</div>
+									</div></li>
+								</li>
+
+
+							</ul>
+						</div>
+
+						<div class="list_goods" th:if="${user==null}">
+							<ul data-title="이벤트 소식" data-section="event"
+								class="list_goods_ul">
+								<li>
+								<li style="text-align: center;">
+									<div class="inner_info"></div>
+								</li>
+								<li data-index="1" style="text-align: center;">
+
+									<div class="info_goods">
+										<div class="inner_info">
+											<span class="name"
+												style="font-size: 30px; margin-bottom: 20px; text-align: center; margin-top: 50px; overflow: inherit; position: static; letter-spacing: 5px;">
+
+
+												⬆️<br /> 관심분야 설정하시면<br /> 좋아하실만한 상품을 <br /> 알려드릴게요
+											</span>
+
+										</div>
+									</div>
+								</li>
+								</li>
+
+
+							</ul>
+						</div>
+
+						<div class="list_goods"
+							th:if="${user != null and user.interest1 == null}">
+							<ul data-title="이벤트 소식" data-section="event"
+								class="list_goods_ul">
+								<li>
+								<li style="text-align: center;">
+									<div class="inner_info"></div>
+								</li>
+								<li data-index="1" style="text-align: center;">
+
+									<div class="info_goods">
+										<div class="inner_info">
+											<span class="name"
+												style="font-size: 30px; margin-bottom: 20px; text-align: center; margin-top: 50px; overflow: inherit; position: static; letter-spacing: 5px;">
+
+
+												⬆️<br /> 관심분야 설정하시면<br /> 좋아하실만한 상품을 <br /> 알려드릴게요
+											</span>
+
+										</div>
+									</div>
+								</li>
+								</li>
+
+
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!-- .main_type2 반복 끝-->
+			</div>
+		</div>
+
+
+		<div th:replace="footer :: footerFragment"></div>
+		<!-- id="footer" -->
+
+	</div>
+
 </body>
 </html>
