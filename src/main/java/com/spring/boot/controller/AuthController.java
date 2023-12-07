@@ -41,8 +41,7 @@ import lombok.RequiredArgsConstructor;
 	1. controller에서 mapping할 때 매개변수에 @AuthenticationPrincipal PrincipalDetails principalDetails 추가
 	2. principalDetails.getUser를 하면 로그인 시 받아온 SiteUser의 데이터 활용 가능
 	3. principalDetails.getEmail(), getUsername() 등과 같은 데이터 받아올 수 있음(PrincipalDetails 클래스 참조)
-	
- */
+*/
 
 @RequiredArgsConstructor
 @Controller
@@ -53,6 +52,7 @@ public class AuthController {
 	private final UserService userService;
 	private final CartService cartService;
 
+	//일반 회원가입
 	@PreAuthorize("isAnonymous()")
 	@GetMapping("/signup")
 	public String signup(UserCreateForm userCreateForm) {
@@ -61,6 +61,7 @@ public class AuthController {
 		return "signup_form";
 	}
 
+	//일반 회원가입
 	@PreAuthorize("isAnonymous()")
 	@PostMapping("/signup")
 	public String signup(@Valid UserCreateForm userCreateForm, BindingResult bindResult,
@@ -143,6 +144,7 @@ public class AuthController {
 		return "redirect:/auth/login";
 	}
 
+	//소셜 로그인 유저 회원가입
 	@GetMapping("/oauthSignup")
 	public String oauthSignup(OAuthUserCreateForm oAuthUserCreateForm,
 			@AuthenticationPrincipal PrincipalDetails principalDetails, Model model) {
@@ -164,6 +166,7 @@ public class AuthController {
 
 	}
 
+	//소셜 로그인 유저 회원가입
 	@PostMapping("/oauthSignup")
 	public String oauthSignup(@Valid OAuthUserCreateForm oAuthUserCreateForm, BindingResult bindResult,
 			RedirectAttributes redirectAttributes) {
@@ -197,8 +200,8 @@ public class AuthController {
 
 			String grade = "B";
 
-			userService.oauthSignup(oauthUser, role, name, birthDate, createdDate, postcode, address, detailAddress,
-					tel, true, grade, 0, 0);
+			userService.oauthSignup(oauthUser, role, name, birthDate, 
+					createdDate, postcode, address, detailAddress, tel, true, grade, 0, 0);
 
 			// 새로 생성한 유저의 카트 생성
 			cartService.create(oauthUser);
@@ -270,8 +273,7 @@ public class AuthController {
 
 		} else {
 			// 정보가 충분한 경우 홈페이지로 리다이렉트
-//        	redirectAttributes.addFlashAttribute("alertMessage", "처음 오셨군요! 회원 가입을 완료해주세요.");
-			return "redirect:/wewalk/main"; // 홈페이지로 이동
+			return "redirect:/wewalk/main";
 		}
 	}
 

@@ -39,6 +39,7 @@ public class MainController {
 		// 판매량 상위 3개
 		Pageable topN = PageRequest.of(0, 3);
 
+		//로그인 한 유저가 관심가질만한 상품 추천
 		if (principalDetails != null) {
 			SiteUser user = userService.getUserByUserName(principalDetails.getUsername());
 
