@@ -161,7 +161,7 @@ public class AuthController {
 
 			return "oauth_signup_form";
 		} else {
-			return "redirect:/";
+			return "redirect:/wewalk/main";
 		}
 
 	}
@@ -304,9 +304,7 @@ public class AuthController {
 
 	@GetMapping("/reactivate")
 	public String reactivate(@RequestParam String userName, Model model) {
-
 		return "reActivate";
-
 	}
 
 	@PostMapping("/reactivate")
@@ -317,9 +315,7 @@ public class AuthController {
 		if (siteUser.isActivated() == false) {
 			userService.reactivate(siteUser);
 		}
-
 		return "redirect:/auth/login";
-
 	}
 
 	// login은 security가 처리하므로 post방식의 로그인 처리 메소드는 없어도 됨
@@ -328,13 +324,9 @@ public class AuthController {
 	public String login(@AuthenticationPrincipal PrincipalDetails principalDetails,
 			@RequestParam(value = "error", required = false) String error, Model model) {
 
-//		if (principalDetails != null) {
-//	        return "redirect:/";  // 로그인되어 있다면 메인 페이지로 리다이렉트
-//	    }
-
-		if ("disabled".equals(error)) {
+		if ("disabled".equals(error)) { //논리적 삭제된 계정의 경우
 			model.addAttribute("reactivatePrompt", true);
-		} else if ("true".equals(error)) {
+		} else if ("true".equals(error)) { //아이디 또는 패스워드가 틀린 경우
 			model.addAttribute("alertMessage", "아이디 또는 패스워드가 틀립니다");
 		}
 		return "login";

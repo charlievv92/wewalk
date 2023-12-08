@@ -117,7 +117,7 @@ public class MainController {
 
 	}
 
-	// 베스트 상품 페이징
+	// 베스트 상품 페이지
 	@GetMapping("/searchBest")
 	public String searchBest(@RequestParam(value = "sort", required = false) String sort,
 			@ModelAttribute PageRequestDTO pageRequestDTO, Model model,
@@ -136,12 +136,15 @@ public class MainController {
 
 		List<Long> top20SellingProductnos = orderListService.getTopNSellingProductnos(top20);
 
-		// 판매량 상위 20개 상품 중 2회 이상 재구매한 유저가 있는 상품(2회 이상 재구매한 유저가 많은 상품 -> 3명 이상)
+		// 판매량 상위 20개 상품 중 2회 이상 재구매한 유저가 있는 상품
 		List<Long> productnosTop20SellingNBoughtMoreThan3TimesBySameUser = orderListService
 				.getProductnosBoughtMoreThan3TimesBySameUser(top20SellingProductnos);
 
-		model.addAttribute("paging", productService
-				.getBestProducts(productnosTop20SellingNBoughtMoreThan3TimesBySameUser, pageRequestDTO, sort));
+		model.addAttribute("paging", 
+				productService.getBestProducts(
+						productnosTop20SellingNBoughtMoreThan3TimesBySameUser, pageRequestDTO, sort)
+		);
+		
 		if (sort != null && !sort.isEmpty()) {
 			if (sort.equals("newest")) {
 				sortText = "신상품순";
